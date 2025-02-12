@@ -1,0 +1,42 @@
+/* Footer.css */
+footer {
+    background-color: #3B2858;
+    color: white;
+    padding: 20px 5%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    flex-shrink: 0;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    /* Align text to the left */
+    text-align: left;
+    max-width: 960px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    color: white;
+}
+
+.footer-bottom {
+    text-align: left;
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    margin-top: 2em;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: flex-start; /* Ensures left alignment on smaller screens */
+    }
+
+    .footer-bottom {
+        text-align: left;
+    }
+}
