@@ -7,11 +7,11 @@ const SidebarLink = styled(Link)`
     color: black;
     justify-content: space-between;
     align-items: center;
-    padding: 10px; /* Slightly reduced padding */
+    padding: 20px; /* Slightly reduced padding */
     list-style: none;
-    height: 50px; /* Slightly reduced height */
+    height: 70px; /* Slightly reduced height */
     text-decoration: none;
-    padding-top: 2em;
+    padding-top: 3em;
     font-family: 'Inter', sans-serif; /* Inter font */
 
     &:hover {

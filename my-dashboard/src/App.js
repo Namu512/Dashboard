@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
-import Footer from './Components/Footer/Footer'; // Import Footer component
-// ... other page imports
+import Footer from './Components/Footer/Footer';
+import TaxationScreen from './Components/Taxation/Taxation';
 
 const App = () => {
     const [theme, setTheme] = useState('light');
@@ -11,7 +11,12 @@ const App = () => {
         <Router>
             <div className={`app-container ${theme}`}>
                 <Navbar theme={theme} setTheme={setTheme} />
-                <Footer /> {/* Footer is a sibling of main-content, NOT inside */}
+                <main>
+                    <Routes>
+                        <Route path="/masterdata/taxation" element={<TaxationScreen />} />
+                    </Routes>
+                </main>
+                <Footer />
             </div>
         </Router>
     );

@@ -1,8 +1,7 @@
-/* Footer.css */
 footer {
     background-color: #3B2858;
     color: white;
-    padding: 20px 5%;
+    padding: 10px 5%;
     width: 100%;
     position: fixed;
     bottom: 0;
@@ -13,30 +12,67 @@ footer {
 .footer-content {
     display: flex;
     flex-direction: column;
-    /* Align text to the left */
-    text-align: left;
     max-width: 960px;
-    margin: 0 auto;
+    margin: 15 auto;
     font-family: 'Inter', sans-serif;
     color: white;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    margin-bottom: 10px;
+}
+
+.footer-left p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.footer-left a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-left a:hover {
+    text-decoration: underline;
 }
 
 .footer-bottom {
-    text-align: left;
-    font-size: 0.8rem;
-    font-family: 'Inter', sans-serif;
-    color: white;
-    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    font-size: 1.2rem;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Media query for smaller screens */
-@media (max-width: 768px) {
+.social-icons {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #ccc;
+}
+
+@media (max-width: 900px) {
     .footer-content {
         flex-direction: column;
-        align-items: flex-start; /* Ensures left alignment on smaller screens */
+        align-items: flex-start;
     }
 
     .footer-bottom {
-        text-align: left;
-    }
+        flex-direction: column;
+        align-items: flex-start;
+  }
 }

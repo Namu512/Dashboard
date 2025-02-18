@@ -1,6 +1,6 @@
-// Footer.js
 import React from 'react';
 import './Footer.css';
+import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -14,14 +14,23 @@ const Footer = () => {
                     <p>Office: +91 22 4297 5100</p>
                     <p>Email: <a href="mailto:contact@talentcorner.in">contact@talentcorner.in</a></p>
                 </div>
-                <div className="footer-right">
-                    <a href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in"></i></a>
-                </div>
                 <div className="footer-bottom">
                     <p>&copy; {currentYear} Talent Corner HR Services Pvt. Ltd. All rights reserved.</p>
+                    <div className="social-icons">
+                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                        <FaFacebook />
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                        <FaInstagram />
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                        <FaLinkedin />
+                    </a>
+                    <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+                        <FaYoutube />
+                    </a>
                 </div>
+            </div>
             </div>
         </footer>
     );

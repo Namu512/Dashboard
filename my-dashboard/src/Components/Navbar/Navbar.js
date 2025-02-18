@@ -130,16 +130,16 @@ const NavIcon = styled(Link)`
 const SidebarNav = styled.nav`
 
     background: white;
-    width: 250px;
+    width: 300px;
     height: 100vh; 
-    height: calc(100vh - 80px - 150px); /* Calculate height */
+    height: calc(100vh - 75px - 195px); /* Calculate height */
     justify-content: center;
     position: fixed;
-    top: 80px; /* Match navbar height */
+    top: 85px; /* Match navbar height */
     left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
     transition: 350ms;
     z-index: 10;
-    padding-top: -100px;
+    padding-top: -120px;
     overflow-y: auto; /* Add scroll if content overflows */
 `;
 
@@ -150,13 +150,14 @@ const SidebarWrap = styled.div`
 const RightSidebar = styled.aside`
     width: 300px; /* Match left sidebar width */
     background: white;
-    position: absolute;
-    top: 80px;
+    position: fixed;
+    top: 85px;
     right: ${({ isVisible }) => (isVisible ? '0' : '-100%')}; /* Similar to left sidebar behavior */
-    height: calc(100vh - 80px - 150px); /* Match left sidebar height */
+    height: calc(100vh - 75px - 195px); /* Match left sidebar height */
     overflow-y: auto;
     transition: transform 0.3s ease-in-out;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 `;
 
 
@@ -165,7 +166,7 @@ const RightSidebarToggleButton = styled.button`
     border: none;
     padding: 0;
     cursor: pointer;
-    font-size: 1.8rem; /* Reduce size to match */
+    font-size: 2.0rem; /* Reduce size to match */
     color: ${({ theme }) => (theme === 'dark' ? 'white' : 'black')};
     display: flex;
     align-items: center;
