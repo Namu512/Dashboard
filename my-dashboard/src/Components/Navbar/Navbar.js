@@ -1,4 +1,3 @@
-// Navbar.js
 import React, { useState } from 'react';
 import './Navbar.css';
 import logo_light from '../../assets/Talent_Corner_Logo.jpeg';
@@ -14,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { FaMoneyBill, FaExclamationTriangle, FaHandshake, FaChartLine, FaUsers, FaTrophy, FaCoins } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri';
+import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 
 const Navbar = ({ theme, setTheme }) => {
     const [sidebar, setSidebar] = useState(false);
@@ -41,75 +41,104 @@ const Navbar = ({ theme, setTheme }) => {
     ];
 
     return (
-        <div className={`app-container ${theme}`}>
-            <div className={`navbar ${theme}`}>
-                <div className="navbar-left">
-                    <NavIcon to="#">
-                        <FaIcons.FaBars onClick={showSidebar} className="sidebar-toggle" />
-                    </NavIcon>
-                    <img src={theme === 'light' ? logo_light : logo_dark} alt="Logo" className="logo" />
-                    <span className="company-name">Talent Corner Hr Services Pvt Ltd</span>
+        <>
+            <div className={`app-container ${theme}`}>
+                <div className={`navbar ${theme}`}>
+                    <div className="navbar-left">
+                        <NavIcon to="#">
+                            <FaIcons.FaBars onClick={showSidebar} className="sidebar-toggle" />
+                        </NavIcon>
+                        <img src={theme === 'light' ? logo_light : logo_dark} alt="Logo" className="logo" />
+                        <span className="company-name">Talent Corner Hr Services Pvt Ltd</span>
+                    </div>
+
+                    <div className="navbar-right">
+                        <ul>
+                            <li>About</li>
+                        </ul>
+                        <img
+                            onClick={toggle_mode}
+                            src={theme === 'light' ? toggle_light : toggle_dark}
+                            alt="Toggle Theme"
+                            className="toggle-icon"
+                        />
+                        <RightSidebarToggleButton onClick={toggleRightSidebar}>
+                            <GiHamburgerMenu />
+                        </RightSidebarToggleButton>
+                    </div>
                 </div>
 
-                <div className="navbar-right">
-                    <ul>
-                        <li>About</li>
+                <SidebarNav sidebar={sidebar}>
+                    <SidebarWrap>
+                        <NavIcon to="#">
+                            <AiIcons.AiOutlineClose onClick={showSidebar} />
+                        </NavIcon>
+                        {SidebarData.map((item, index) => (
+                            <SubMenu item={item} key={index} />
+                        ))}
+                    </SidebarWrap>
+                </SidebarNav>
+
+                <RightSidebar isVisible={isRightSidebarVisible}>
+                    <ul className="right-sidebar-list">
+                        {rightSidebarItems.map((item, index) => (
+                            <li
+                                key={index}
+                                className="right-sidebar-item"
+                                onClick={() => {
+                                    if (item.hasDropdown) {
+                                        setOpenDropdowns(prevState => ({
+                                            ...prevState,
+                                            [index]: !prevState[index],
+                                        }));
+                                    }
+                                }}
+                            >
+                                {item.icon}
+                                <span>{item.title}</span>
+                                {item.hasDropdown && (
+                                    <DropdownArrow>
+                                        {openDropdowns[index] ? <RiArrowUpSFill /> : <RiArrowDownSFill />}
+                                    </DropdownArrow>
+                                )}
+                            </li>
+                        ))}
                     </ul>
-                    <img
-                        onClick={toggle_mode}
-                        src={theme === 'light' ? toggle_light : toggle_dark}
-                        alt="Toggle Theme"
-                        className="toggle-icon"
-                    />
-                    <RightSidebarToggleButton onClick={toggleRightSidebar}>
-                        <GiHamburgerMenu />
-                    </RightSidebarToggleButton>
+                </RightSidebar>
+
+                <div className="content">
+                    {/* Main content */}
                 </div>
             </div>
 
-            <SidebarNav sidebar={sidebar}>
-                <SidebarWrap>
-                    <NavIcon to="#">
-                        <AiIcons.AiOutlineClose onClick={showSidebar} />
-                    </NavIcon>
-                    {SidebarData.map((item, index) => (
-                        <SubMenu item={item} key={index} />
-                    ))}
-                </SidebarWrap>
-            </SidebarNav>
-
-            <RightSidebar isVisible={isRightSidebarVisible}>
-                <ul className="right-sidebar-list">
-                    {rightSidebarItems.map((item, index) => (
-                        <li
-                            key={index}
-                            className="right-sidebar-item"
-                            onClick={() => {
-                                if (item.hasDropdown) {
-                                    setOpenDropdowns(prevState => ({
-                                        ...prevState,
-                                        [index]: !prevState[index],
-                                    }));
-                                }
-                            }}
-                        >
-                            {item.icon} {/* Main icon */}
-                            <span>{item.title}</span>
-
-                            {item.hasDropdown && (
-                                <DropdownArrow>
-                                    {openDropdowns[index] ? <RiArrowUpSFill /> : <RiArrowDownSFill />}
-                                </DropdownArrow>
-                            )}
-                        </li>
-                    ))}
-                </ul>
-            </RightSidebar>
-
-            <div className="content">
-                {/* Main content */}
-            </div>
-        </div>
+            <footer className="navbar-footer">
+                <div className="footer-content">
+                    <div className="footer-left">
+                        <p>Talent Corner H.R. Services Pvt. Ltd.</p>
+                        <p>708 & 709, Bhaveshwar Arcade Annex, LBS Marg, Opp Shreyas Cinema, Ghatkopar West, Mumbai - 400086</p>
+                        <p>Office: +91 22 4297 5100</p>
+                        <p>Email: <a href="mailto:contact@talentcorner.in">contact@talentcorner.in</a></p>
+                    </div>
+                    <div className="footer-bottom">
+                        <p>&copy; {new Date().getFullYear()} Talent Corner HR Services Pvt. Ltd. All rights reserved.</p>
+                        <div className="social-icons">
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                                <FaFacebook />
+                            </a>
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                                <FaInstagram />
+                            </a>
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                                <FaLinkedin />
+                            </a>
+                            <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+                                <FaYoutube />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </>
     );
 };
 
@@ -173,7 +202,7 @@ const DropdownArrow = styled.span`
     padding-left: 20px;
     display: flex;
     align-items: center;
-    font-size: 18px; /* Increased size */
+    font-size: 18px;
     color: black;
     cursor: pointer;
 `;
