@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FiEdit, FiDownload, FiTrash } from 'react-icons/fi';
+import {FiTrash } from 'react-icons/fi';
 import './Taxation.css';
 
 const TaxationScreen = () => {
@@ -16,12 +16,22 @@ const TaxationScreen = () => {
   const [deductionRows, setDeductionRows] = useState(4);
   const [deductionColumns, setDeductionColumns] = useState(["Deduction Type", "Amount (₹)", "Applicable Condition"]);
 
+  const [gstRows, setGstRows] = useState(6);
+  const [gstColumns, setGstColumns] = useState(["INCOME / EXP HEAD", "GST RATE", "HSN CODE", "VENDOR STATUS", "TDS RATE", "THRESHOLD FOR GST"]);
+
+  const [tdsRows, setTdsRows] = useState(3);
+  const [tdsColumns, setTdsColumns] = useState(["SECTION", "NATURE OF PAYMENT", "THRESHOLD LIMIT", "TDS RATE"]);
+
   // Handlers for Adding Rows
   const addRow = (table) => {
     if (table === 'newRegime') {
       setNewRegimeRows(newRegimeRows + 1);
     } else if (table === 'deductions') {
       setDeductionRows(deductionRows + 1);
+    } else if (table === 'gst') {
+      setGstRows(gstRows + 1);
+    } else if (table === 'tds') {
+      setTdsRows(tdsRows + 1);
     }
   };
 
@@ -31,6 +41,10 @@ const TaxationScreen = () => {
       setNewRegimeColumns([...newRegimeColumns, `New Column ${newRegimeColumns.length + 1}`]);
     } else if (table === 'deductions') {
       setDeductionColumns([...deductionColumns, `New Column ${deductionColumns.length + 1}`]);
+    } else if (table === 'gst') {
+      setGstColumns([...gstColumns, `New Column ${gstColumns.length + 1}`]);
+    } else if (table === 'tds') {
+      setTdsColumns([...tdsColumns, `New Column ${tdsColumns.length + 1}`]);
     }
   };
 
@@ -130,26 +144,25 @@ const TaxationScreen = () => {
             </div>
 
             {/* GST Table */}
-            <h2>GST ({selectedYearGST})</h2>
+            <h2>GST</h2>
             <table>
               <thead>
                 <tr>
-                  <th>INCOME / EXP HEAD</th>
-                  <th>GST RATE</th>
-                  <th>HSN CODE</th>
-                  <th>VENDOR STATUS</th>
-                  <th>TDS RATE</th>
-                  <th>THRESHOLD FOR GST</th>
-                  <th>ACTION</th>
+                  {gstColumns.map((col, index) => <th key={index}>{col}</th>)}
                 </tr>
               </thead>
               <tbody>
-                {[...Array(6)].map((_, index) => (
-                  <tr key={index}>
-                    <td></td><td></td><td></td><td></td><td></td><td></td>
-                    <td><FiEdit className="icon" /><FiDownload className="icon" /><FiTrash className="icon" /></td>
+                {[...Array(gstRows)].map((_, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {gstColumns.map((_, colIndex) => <td key={colIndex}></td>)}
                   </tr>
                 ))}
+                <tr>
+                  <td colSpan={gstColumns.length}>
+                    <button className="add-btn" onClick={() => addRow('gst')}>➕ Row</button>
+                    <button className="add-btn" onClick={() => addColumn('gst')}>➕ Column</button>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -171,20 +184,21 @@ const TaxationScreen = () => {
             <table>
               <thead>
                 <tr>
-                  <th>SECTION</th>
-                  <th>NATURE OF PAYMENT</th>
-                  <th>THRESHOLD LIMIT</th>
-                  <th>TDS RATE</th>
-                  <th>ACTION</th>
+                  {tdsColumns.map((col, index) => <th key={index}>{col}</th>)}
                 </tr>
               </thead>
               <tbody>
-                {[...Array(3)].map((_, index) => (
-                  <tr key={index}>
-                    <td></td><td></td><td></td><td></td>
-                    <td><FiEdit className="icon" /><FiDownload className="icon" /><FiTrash className="icon" /></td>
+                {[...Array(tdsRows)].map((_, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {tdsColumns.map((_, colIndex) => <td key={colIndex}></td>)}
                   </tr>
                 ))}
+                <tr>
+                  <td colSpan={tdsColumns.length}>
+                    <button className="add-btn" onClick={() => addRow('tds')}>➕ Row</button>
+                    <button className="add-btn" onClick={() => addColumn('tds')}>➕ Column</button>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>

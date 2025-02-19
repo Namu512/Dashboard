@@ -11,7 +11,7 @@ import { SidebarData } from '../Sidebar/SidebarData';
 import SubMenu from '../Sidebar/SubMenu';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { FaMoneyBill, FaExclamationTriangle, FaHandshake, FaChartLine, FaUsers, FaTrophy, FaCoins} from 'react-icons/fa';
+import { FaMoneyBill, FaExclamationTriangle, FaHandshake, FaChartLine, FaUsers, FaTrophy, FaCoins } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri';
 
@@ -24,7 +24,6 @@ const Navbar = ({ theme, setTheme }) => {
     };
 
     const [isRightSidebarVisible, setIsRightSidebarVisible] = useState(true);
-
     const toggleRightSidebar = () => {
         setIsRightSidebarVisible(!isRightSidebarVisible);
     };
@@ -36,11 +35,11 @@ const Navbar = ({ theme, setTheme }) => {
         { title: 'Over Due', icon: <FaExclamationTriangle />, hasDropdown: true },
         { title: 'Franchisee Payment Dues', icon: <FaHandshake />, hasDropdown: true },
         { title: 'Outstanding Expenditure', icon: <FaChartLine />, hasDropdown: true },
-        { title: 'Client with no Requirement', icon: <FaUsers />, hasDropdown: true},
+        { title: 'Client with no Requirement', icon: <FaUsers />, hasDropdown: true },
         { title: 'Team Performance', icon: <FaTrophy />, hasDropdown: true },
         { title: 'Incentive Dues', icon: <FaCoins />, hasDropdown: true },
     ];
-    
+
     return (
         <div className={`app-container ${theme}`}>
             <div className={`navbar ${theme}`}>
@@ -73,31 +72,30 @@ const Navbar = ({ theme, setTheme }) => {
                     <NavIcon to="#">
                         <AiIcons.AiOutlineClose onClick={showSidebar} />
                     </NavIcon>
-                    {SidebarData.map((item, index) => {
-                        return <SubMenu item={item} key={index} />;
-                    })}
+                    {SidebarData.map((item, index) => (
+                        <SubMenu item={item} key={index} />
+                    ))}
                 </SidebarWrap>
             </SidebarNav>
 
-                        <RightSidebar isVisible={isRightSidebarVisible}>
+            <RightSidebar isVisible={isRightSidebarVisible}>
                 <ul className="right-sidebar-list">
                     {rightSidebarItems.map((item, index) => (
-                        <li 
-                            key={index} 
+                        <li
+                            key={index}
                             className="right-sidebar-item"
                             onClick={() => {
                                 if (item.hasDropdown) {
                                     setOpenDropdowns(prevState => ({
                                         ...prevState,
-                                        [index]: !prevState[index],  // Toggle state
+                                        [index]: !prevState[index],
                                     }));
                                 }
                             }}
                         >
-                            {item.icon}  {/* Main icon */}
+                            {item.icon} {/* Main icon */}
                             <span>{item.title}</span>
 
-                            {/* Dropdown Icon Logic */}
                             {item.hasDropdown && (
                                 <DropdownArrow>
                                     {openDropdowns[index] ? <RiArrowUpSFill /> : <RiArrowDownSFill />}
@@ -109,7 +107,7 @@ const Navbar = ({ theme, setTheme }) => {
             </RightSidebar>
 
             <div className="content">
-                {/* Your application's main content */}
+                {/* Main content */}
             </div>
         </div>
     );
@@ -128,19 +126,18 @@ const NavIcon = styled(Link)`
 `;
 
 const SidebarNav = styled.nav`
-
     background: white;
     width: 300px;
-    height: 100vh; 
-    height: calc(100vh - 75px - 195px); /* Calculate height */
-    justify-content: center;
+    min-height: calc(100vh - 75px - 170px);
     position: fixed;
-    top: 85px; /* Match navbar height */
+    top: 85px;
     left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
-    transition: 350ms;
-    z-index: 10;
-    padding-top: -120px;
-    overflow-y: auto; /* Add scroll if content overflows */
+    transition: 350ms ease-in-out;
+    z-index: 1000;
+    padding: -120px;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    overflow-y: auto;
 `;
 
 const SidebarWrap = styled.div`
@@ -148,37 +145,35 @@ const SidebarWrap = styled.div`
 `;
 
 const RightSidebar = styled.aside`
-    width: 300px; /* Match left sidebar width */
+    width: 400px;
     background: white;
     position: fixed;
     top: 85px;
-    right: ${({ isVisible }) => (isVisible ? '0' : '-100%')}; /* Similar to left sidebar behavior */
-    height: calc(100vh - 75px - 195px); /* Match left sidebar height */
+    right: ${({ isVisible }) => (isVisible ? '0' : '-100%')};
+    min-height: calc(100vh - 75px - 170px);
     overflow-y: auto;
     transition: transform 0.3s ease-in-out;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem;
+    padding: -100px;
     z-index: 1000;
 `;
-
 
 const RightSidebarToggleButton = styled.button`
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
-    font-size: 2.0rem; /* Reduce size to match */
-    color: ${({ theme }) => (theme === 'dark' ? 'white' : 'black')};
-    display: flex;
-    align-items: center;
+    font-size: 2.0rem;
     color: purple;
 `;
 
 const DropdownArrow = styled.span`
-    margin-left: auto;  /* Push icon to the right */
+    margin-left: auto;
     padding-left: 20px;
     display: flex;
     align-items: center;
-    font-size: 10px;
+    font-size: 18px; /* Increased size */
     color: black;
     cursor: pointer;
 `;
