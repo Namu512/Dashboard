@@ -128,7 +128,7 @@ const NavIcon = styled(Link)`
 const SidebarNav = styled.nav`
     background: white;
     width: 300px;
-    min-height: calc(100vh - 75px - 170px);
+    min-height: calc(100vh - 75px - 190px);
     position: fixed;
     top: 85px;
     left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
@@ -150,7 +150,7 @@ const RightSidebar = styled.aside`
     position: fixed;
     top: 85px;
     right: ${({ isVisible }) => (isVisible ? '0' : '-100%')};
-    min-height: calc(100vh - 75px - 170px);
+    min-height: calc(100vh - 75px - 190px);
     overflow-y: auto;
     transition: transform 0.3s ease-in-out;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

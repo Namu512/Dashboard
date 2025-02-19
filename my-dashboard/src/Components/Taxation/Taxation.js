@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {FiTrash } from 'react-icons/fi';
+import {FiTrash, FiEdit, FiDownload} from 'react-icons/fi';
 import './Taxation.css';
 
 const TaxationScreen = () => {
@@ -48,6 +48,18 @@ const TaxationScreen = () => {
     }
   };
 
+  const deleteRow = (table, index) => {
+    if (table === 'gst') {
+      setGstRows((prevRows) => Math.max(prevRows - 1, 1)); // Ensures at least 1 row remains
+    } else if (table === 'tds') {
+      setTdsRows((prevRows) => Math.max(prevRows - 1, 1));
+    } else if (table === 'newRegime') {
+      setNewRegimeRows((prevRows) => Math.max(prevRows - 1, 1));
+    } else if (table === 'deductions') {
+      setDeductionRows((prevRows) => Math.max(prevRows - 1, 1));
+    }
+  };
+  
   return (
     <div className="taxation-screen">
       <div className="taxation-content">
@@ -70,14 +82,19 @@ const TaxationScreen = () => {
               </select>
               <span>(Select the year to see the regime)</span>
             </div>
-
+            <div className="table-header">
             {/* New Regime Table */}
             <h2>New Regime</h2>
+            <div className="table-icons">
+                <FiEdit className="icon" />
+                <FiDownload className="icon" />
+              </div>
+            </div>
             <table>
               <thead>
                 <tr>
                   {newRegimeColumns.map((col, index) => <th key={index}>{col}</th>)}
-                  <th></th>
+                  <th>ACTION</th>
                 </tr>
               </thead>
               <tbody>
@@ -106,27 +123,37 @@ const TaxationScreen = () => {
               </select>
               <span>(Select the year to see the deduction and exemptions table)</span>
             </div>
+            <div className="table-header">
             <h2>Deductions & Exemptions</h2>
+            <div className="table-icons">
+                <FiEdit className="icon" />
+                <FiDownload className="icon" />
+              </div>
+            </div>
             <table>
-              <thead>
-                <tr>
-                  {deductionColumns.map((col, index) => <th key={index}>{col}</th>)}
-                </tr>
-              </thead>
-              <tbody>
-                {[...Array(deductionRows)].map((_, rowIndex) => (
-                  <tr key={rowIndex}>
-                    {deductionColumns.map((_, colIndex) => <td key={colIndex}></td>)}
-                  </tr>
-                ))}
-                <tr>
-                  <td colSpan={deductionColumns.length}>
-                    <button className="add-btn" onClick={() => addRow('deductions')}>➕ Row</button>
-                    <button className="add-btn" onClick={() => addColumn('deductions')}>➕ Column</button>
+            <thead>
+              <tr>
+                {deductionColumns.map((col, index) => <th key={index}>{col}</th>)}
+                <th>ACTION</th> {/* Extra column header for delete icon */}
+              </tr>
+            </thead>
+            <tbody>
+              {[...Array(deductionRows)].map((_, rowIndex) => (
+                <tr key={rowIndex}>
+                  {deductionColumns.map((_, colIndex) => <td key={colIndex}></td>)}
+                  <td>
+                    <FiTrash className="icon delete-icon" onClick={() => deleteRow('deductions', rowIndex)} />
                   </td>
                 </tr>
-              </tbody>
-            </table>
+              ))}
+              <tr>
+                <td colSpan={deductionColumns.length + 1}>
+                  <button className="add-btn" onClick={() => addRow('deductions')}>➕ Row</button>
+                  <button className="add-btn" onClick={() => addColumn('deductions')}>➕ Column</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
           </div>
         )}
 
@@ -142,31 +169,40 @@ const TaxationScreen = () => {
                 <option>FY 2025-26</option>
               </select>
             </div>
-
+            <div className="table-header">
             {/* GST Table */}
             <h2>GST</h2>
+            <div className="table-icons">
+                <FiEdit className="icon" />
+                <FiDownload className="icon" />
+              </div>
+            </div>
             <table>
               <thead>
                 <tr>
                   {gstColumns.map((col, index) => <th key={index}>{col}</th>)}
+                  <th>ACTION</th> {/* Extra column for delete button */}
                 </tr>
               </thead>
               <tbody>
-                {[...Array(gstRows)].map((_, rowIndex) => (
+                {Array.from({ length: gstRows }).map((_, rowIndex) => (
                   <tr key={rowIndex}>
                     {gstColumns.map((_, colIndex) => <td key={colIndex}></td>)}
+                    <td>
+                      <FiTrash className="icon" onClick={() => deleteRow('gst', rowIndex)} />
+                    </td>
                   </tr>
                 ))}
                 <tr>
-                  <td colSpan={gstColumns.length}>
+                  <td colSpan={gstColumns.length + 1}>
                     <button className="add-btn" onClick={() => addRow('gst')}>➕ Row</button>
                     <button className="add-btn" onClick={() => addColumn('gst')}>➕ Column</button>
                   </td>
                 </tr>
               </tbody>
             </table>
-          </div>
-        )}
+          </div>      
+        )}  
 
         {/* TDS Section (Unchanged) */}
         {activeTab === 'tds' && (
@@ -180,28 +216,39 @@ const TaxationScreen = () => {
                 <option>FY 2025-26</option>
               </select>
             </div>
+            <div className="table-header">
+            {/* TDS Table */}
             <h2>TDS</h2>
+            <div className="table-icons">
+                    <FiEdit className="icon" />
+                    <FiDownload className="icon" />
+            </div>
+          </div>
             <table>
               <thead>
                 <tr>
                   {tdsColumns.map((col, index) => <th key={index}>{col}</th>)}
+                  <th>ACTION</th> {/* Extra column for delete button */}
                 </tr>
               </thead>
               <tbody>
-                {[...Array(tdsRows)].map((_, rowIndex) => (
+                {Array.from({ length: tdsRows }).map((_, rowIndex) => (
                   <tr key={rowIndex}>
                     {tdsColumns.map((_, colIndex) => <td key={colIndex}></td>)}
+                    <td>
+                      <FiTrash className="icon" onClick={() => deleteRow('tds', rowIndex)} />
+                    </td>
                   </tr>
                 ))}
                 <tr>
-                  <td colSpan={tdsColumns.length}>
+                  <td colSpan={tdsColumns.length + 1}>
                     <button className="add-btn" onClick={() => addRow('tds')}>➕ Row</button>
                     <button className="add-btn" onClick={() => addColumn('tds')}>➕ Column</button>
                   </td>
                 </tr>
               </tbody>
             </table>
-          </div>
+        </div>
         )}
       </div>
     </div>
