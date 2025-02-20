@@ -28,7 +28,7 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     transition: background 0.3s ease, box-shadow 0.3s ease;
     position: fixed;
-    z-index: 10;
+    z-index: 1000;
 }
 
 .navbar.dark {

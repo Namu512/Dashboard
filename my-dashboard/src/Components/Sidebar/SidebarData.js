@@ -28,6 +28,14 @@ export const SidebarData = [
         icon: <BsFileBarGraph />,
         iconClosed: <RiArrowDownSFill />,
         iconOpened: <RiArrowUpSFill />,
+        subNav: [
+            { title: 'Employee Data', path: '/in-housedata/employee', icon: <MdPlayArrow /> },
+            { title: 'Franchisee Data', path: '/in-housedata/franchisee', icon: <MdPlayArrow /> },
+            { title: 'Client Data', path: '/in-housedata/client', icon: <MdPlayArrow /> },
+            { title: 'Legal Data', path: '/in-housedata/legal', icon: <MdPlayArrow /> }, // Fixed path casing
+            { title: 'Enquiry Data', path: '/in-housedata/enquiry', icon: <MdPlayArrow /> },
+            { title: 'Vendor Data', path: '/in-housedata/vendor', icon: <MdPlayArrow /> },
+        ]
     },
     {
         title: 'Transaction Data',

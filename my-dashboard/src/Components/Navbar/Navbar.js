@@ -23,7 +23,7 @@ const Navbar = ({ theme, setTheme }) => {
         setTheme(theme === 'light' ? 'dark' : 'light');
     };
 
-    const [isRightSidebarVisible, setIsRightSidebarVisible] = useState(true);
+    const [isRightSidebarVisible, setIsRightSidebarVisible] = useState(false);
     const toggleRightSidebar = () => {
         setIsRightSidebarVisible(!isRightSidebarVisible);
     };
