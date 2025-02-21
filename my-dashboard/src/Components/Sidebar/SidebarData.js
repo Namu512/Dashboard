@@ -17,7 +17,7 @@ export const SidebarData = [
             { title: 'Taxation', path: '/masterdata/taxation', icon: <MdPlayArrow /> },
             { title: 'Salary Data', path: '/masterdata/salarydata', icon: <MdPlayArrow /> },
             { title: 'Salary Deduction', path: '/masterdata/salarydeduction', icon: <MdPlayArrow /> },
-            { title: 'Franchisee', path: '/masterdata/franchisee', icon: <MdPlayArrow /> }, // Fixed path casing
+            { title: 'Franchisee Terms', path: '/masterdata/franchiseeterms', icon: <MdPlayArrow /> }, // Fixed path casing
             { title: 'Client Terms', path: '/masterdata/clientterms', icon: <MdPlayArrow /> },
             { title: 'Expenses', path: '/masterdata/expenses', icon: <MdPlayArrow /> },
         ]
@@ -33,6 +33,7 @@ export const SidebarData = [
             { title: 'Franchisee Data', path: '/in-housedata/franchisee', icon: <MdPlayArrow /> },
             { title: 'Client Data', path: '/in-housedata/client', icon: <MdPlayArrow /> },
             { title: 'Legal Data', path: '/in-housedata/legal', icon: <MdPlayArrow /> }, // Fixed path casing
+            { title: 'Billing Data', path: '/in-housedata/billing', icon: <MdPlayArrow /> },
             { title: 'Enquiry Data', path: '/in-housedata/enquiry', icon: <MdPlayArrow /> },
             { title: 'Vendor Data', path: '/in-housedata/vendor', icon: <MdPlayArrow /> },
         ]
