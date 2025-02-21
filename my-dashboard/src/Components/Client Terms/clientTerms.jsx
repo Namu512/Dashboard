@@ -1,5 +1,6 @@
 import { useState } from "react"
 import "./clientTerms.css"
+import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 
 const ClientTerms = () => {
   const [items, setItems] = useState([
@@ -154,12 +155,11 @@ const ClientTerms = () => {
                 </td>
                 <td className="actions">
                   <button className="icon-btn edit" onClick={() => handleEdit(item)}>
-                    ✎
+                    <FaRegEdit className="edit-icon" />
                   </button>
                   <button className="icon-btn delete" onClick={() => handleDelete(item.id)}>
-                    🗑
+                    <FaRegTrashAlt className="delete-icon" />
                   </button>
-                  
                 </td>
               </tr>
             ))}
@@ -303,4 +303,3 @@ const ClientTerms = () => {
 }
 
 export default ClientTerms
-

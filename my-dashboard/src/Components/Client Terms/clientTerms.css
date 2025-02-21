@@ -1,10 +1,16 @@
 .container {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 20px;
+    width: 50%;
+    max-width: 1200px; /* Optional: Set a maximum width */
+    margin: 20px auto; /* Center the container horizontally */
+    top: 60px;
+    min-height: calc(100vh - 400px); /* Adjust 200px for navbar + footer */
+    padding: 5px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex; /* Enable flexbox for vertical centering */
+    flex-direction: column; /* Align items vertically */
+    overflow:hidden;
   }
-  
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -57,43 +63,57 @@
     background: #553c9a;
   }
   
-  .table-container {
+.table-container {
     background: white;
-    border-radius: 8px;
+    border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    flex-grow: 1; /* Allow table to expand to fill available space */
+    display: flex; /* Use flexbox for table container */
+    width: 100%;
   }
+
   
   table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 14px;
+    table-layout: fixed;
   }
   
   th {
     background: #f8f8f8;
     padding: 12px 16px;
-    text-align: left;
+    text-align: center;
     font-weight: 600;
     color: #666;
+    white-space: nowrap; /* Prevent header text from wrapping */
+    overflow: hidden;    /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis (...) for overflowing text */
   }
   
   td {
-    padding: 12px 16px;
+    padding: 5px;
     border-top: 1px solid #f0f0f0;
+    text-align: center; /* Center the text within cells */
   }
   
   .head-component {
     color: #6b46c1;
     font-weight: 500;
+    height: 5px;
+    font-size: 1.2rem;
   }
   
   .charges-vertical {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     overflow-x: auto;
-    padding: 4px 0;
-    align-items: center;
+    padding: 4px ;
+    align-items: right;
+    width: 100px;
+    font-size: 1.2rem;
   }
   
   .charge-item {
@@ -118,6 +138,7 @@
     display: flex;
     gap: 8px;
     justify-content: flex-end;
+    width: 80px;
   }
   
   .icon-btn {
@@ -279,5 +300,33 @@
   .charges-scroll::-webkit-scrollbar-thumb:hover {
     background: #9f7aea;
   }
+
+  .icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+  }
   
+  .edit-icon {
+    color: #4a4a4a;
+    font-size: 20px;
+  }
+  
+  .delete-icon {
+    color: #e63946;
+    font-size: 20px;
+  }
+  
+  .icon-btn:hover .edit-icon {
+    color: #333;
+  }
+  
+  .icon-btn:hover .delete-icon {
+    color: #c92030;
+  }
   
